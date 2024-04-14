@@ -1,0 +1,30 @@
+spring:
+  profiles.active: dev
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: default
+  datasource:
+    driverClassName: org.postgresql.Driver
+    password: to_be_set
+    url: jdbc:postgresql://<to-be-set>/plate_drop
+    username: to_be_set
+  jpa:
+    defer-datasource-initialization: false
+    show-sql: true
+
+    # generate-ddl: true #(in case not using hibernate ddl-auto)
+    properties:
+      hibernate:
+        generate-statistics: true
+        format_sql: true
+        default_schema: public
+        session.events.log.LOG_QUERIES_SLOWER_THAN_MS: 10
+    hibernate:
+      ddl-auto: none
+  #    open-in-view: false
+
+  security:
+    user:
+      name: admin
+      password: admin
