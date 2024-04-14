@@ -21,7 +21,7 @@ spring:
         default_schema: public
         session.events.log.LOG_QUERIES_SLOWER_THAN_MS: 10
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
   #    open-in-view: false
 
   security:
