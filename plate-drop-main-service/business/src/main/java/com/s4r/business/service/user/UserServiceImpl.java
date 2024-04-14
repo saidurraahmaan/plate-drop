@@ -1,7 +1,7 @@
-package com.s4r.service.user;
+package com.s4r.business.service.user;
 
 import com.s4r.domain.user.UserDTO;
-import com.s4r.repository.user.UserRepository;
+import com.s4r.persistence.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

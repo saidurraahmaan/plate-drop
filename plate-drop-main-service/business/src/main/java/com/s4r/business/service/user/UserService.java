@@ -1,4 +1,4 @@
-package com.s4r.service.user;
+package com.s4r.business.service.user;
 
 import java.util.List;
 

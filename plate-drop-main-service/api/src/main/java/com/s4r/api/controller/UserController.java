@@ -1,6 +1,6 @@
 package com.s4r.api.controller;
 
-import com.s4r.service.user.UserService;
+import com.s4r.business.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

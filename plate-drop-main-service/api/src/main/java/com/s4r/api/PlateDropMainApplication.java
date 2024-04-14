@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication()
 @ComponentScan("com.s4r")
 @EntityScan("com.s4r.domain")
-@EnableJpaRepositories("com.s4r.repository")
+@EnableJpaRepositories("com.s4r.persistence")
 public class PlateDropMainApplication {
     public static void main(String[] args) {
         SpringApplication.run(PlateDropMainApplication.class, args);
