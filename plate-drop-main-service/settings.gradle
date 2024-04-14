@@ -1,6 +1,6 @@
 rootProject.name = 'plate-drop-main-service'
 
-include 'service'
+include 'business'
 include 'api'
-include('repository')
-include('domain')
+include 'persistence'
+include 'domain'
