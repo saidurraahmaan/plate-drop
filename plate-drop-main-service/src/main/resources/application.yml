@@ -30,7 +30,7 @@ spring:
         session.events.log.LOG_QUERIES_SLOWER_THAN_MS: 10
     hibernate:
       ddl-auto: none
-#    open-in-view: false
+  #    open-in-view: false
 
   # ---------------------------------------------------
   # Init & Seeding via Spring

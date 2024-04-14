@@ -39,7 +39,7 @@ out/
 
 ### VS Code ###
 .vscode/
-/plate-drop-main-service/application-dev.yml
+application-dev.yml
 
 
 ############################# React (frontend)###################
