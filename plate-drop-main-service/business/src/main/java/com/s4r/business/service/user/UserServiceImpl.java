@@ -27,11 +27,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser() {
-        var userDto = new UserDTO();
-        userDto.setEmail("saidur@gmail.com");
-        userDto.setUsername("saidur");
+    public void addUser(UserDTO userDto) {
 
+        userRepo.save(UserDTO.toEntity(userDto));
     }
 
 }
