@@ -1,46 +1,41 @@
-package com.s4r.domain.user;
+package com.s4r.api.controller.request;
 
 import com.s4r.domain.enums.Role;
-import jakarta.persistence.*;
+import com.s4r.domain.user.UserDTO;
+import jakarta.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "users")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+public class UserAddRequest {
     private Long id;
-
-    @Column(name = "name", nullable = false)
+    @NotNull
     private String name;
-
-    @Column(name = "email", nullable = false, unique = true)
+    @NotNull
     private String email;
-
-    @Column(name = "password", nullable = false)
-    private String password;
-
-    @Column(name = "phone_number", nullable = false)
+    @NotNull
     private String phoneNumber;
-
-    @Column(name = "address")
+    @NotNull
+    private String password;
     private String address;
+    @NotNull
+    private Role role;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
-    private Role role = Role.CUSTOMER;
 
-    public User() {
+    public static UserDTO toDto(UserAddRequest request) {
+
+        return new UserDTO(request.getId(), request.getName(),
+                request.getEmail(), request.getPhoneNumber(),
+                request.getAddress(), request.getPassword(),
+                request.getRole());
     }
 
-    public User(Long id, String name, String email, String password, String phoneNumber, String address,
-                Role role) {
+    public UserAddRequest() {
+    }
+
+    public UserAddRequest(Long id, String name, String email, String phoneNumber, String password, String address, Role role) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.password = password;
         this.phoneNumber = phoneNumber;
+        this.password = password;
         this.address = address;
         this.role = role;
     }
@@ -69,20 +64,20 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getAddress() {

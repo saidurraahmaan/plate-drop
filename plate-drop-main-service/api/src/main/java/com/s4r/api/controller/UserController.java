@@ -1,14 +1,14 @@
 package com.s4r.api.controller;
 
+import com.s4r.api.controller.request.UserAddRequest;
 import com.s4r.business.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RestControllerAdvice
 @RequestMapping("/api/user")
 public class UserController {
 
@@ -20,7 +20,12 @@ public class UserController {
     }
 
     @GetMapping("/get-all")
-    private List<String> getAllUsers() {
+    public List<String> getAllUsers() {
         return userService.getAllUsers();
+    }
+
+    @PostMapping("/register")
+    public void registerNewUser(@RequestBody UserAddRequest request) {
+        userService.addUser(UserAddRequest.toDto(request));
     }
 }
