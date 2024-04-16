@@ -30,7 +30,6 @@ public class UserServiceImpl implements UserService {
     public void addUser() {
         var userDto = new UserDTO();
         userDto.setEmail("saidur@gmail.com");
-        userDto.setUsername("saidur");
 
     }
 
