@@ -12,8 +12,7 @@ spring:
   jpa:
     defer-datasource-initialization: false
     show-sql: true
-
-    # generate-ddl: true #(in case not using hibernate ddl-auto)
+    generate-ddl: true
     properties:
       hibernate:
         generate-statistics: true
@@ -22,7 +21,6 @@ spring:
         session.events.log.LOG_QUERIES_SLOWER_THAN_MS: 10
     hibernate:
       ddl-auto: update
-  #    open-in-view: false
 
   security:
     user:
