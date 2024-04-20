@@ -1,44 +1,42 @@
-package com.s4r.api.controller.request;
+package com.s4r.api.model.response;
 
 import com.s4r.domain.enums.Role;
 import com.s4r.domain.user.UserDTO;
-import jakarta.validation.constraints.NotNull;
 
-public class UserAddRequest {
+public class UserResponse {
     private Long id;
-    @NotNull
     private String name;
-    @NotNull
     private String email;
-    @NotNull
     private String phoneNumber;
-    @NotNull
-    private String password;
     private String address;
-    @NotNull
     private Role role;
 
+    public static UserResponse ofDTO(UserDTO dto) {
+        var result =  new UserResponse();
+        result.setId(dto.getId());
+        result.setEmail(dto.getEmail());
+        result.setName(dto.getName());
+        result.setPhoneNumber(dto.getPhoneNumber());
+        result.setAddress(dto.getAddress());
+        result.setRole(dto.getRole());
 
-    public static UserDTO toDto(UserAddRequest request) {
-
-        return new UserDTO(request.getId(), request.getName(),
-                request.getEmail(), request.getPhoneNumber(),
-                request.getAddress(), request.getPassword(),
-                request.getRole());
+        return result;
     }
 
-    public UserAddRequest() {
+
+    public UserResponse() {
     }
 
-    public UserAddRequest(Long id, String name, String email, String phoneNumber, String password, String address, Role role) {
+    public UserResponse(Long id, String name, String email, String phoneNumber,
+                        String address, Role role) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.password = password;
         this.address = address;
         this.role = role;
     }
+
 
     public Long getId() {
         return id;
@@ -72,14 +70,6 @@ public class UserAddRequest {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -95,4 +85,5 @@ public class UserAddRequest {
     public void setRole(Role role) {
         this.role = role;
     }
+
 }

@@ -1,6 +1,6 @@
 package com.s4r.api.controller;
 
-import com.s4r.api.controller.request.UserAddRequest;
+import com.s4r.api.model.request.UserAddRequest;
 import com.s4r.business.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +27,10 @@ public class UserController {
     @PostMapping("/register")
     public void registerNewUser(@RequestBody UserAddRequest request) {
         userService.addUser(UserAddRequest.toDto(request));
+    }
+
+    @GetMapping("/by-id/{userId}")
+    public void getUserById(@PathVariable Long userId) {
+
     }
 }

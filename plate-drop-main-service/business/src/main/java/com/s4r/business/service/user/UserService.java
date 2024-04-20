@@ -8,4 +8,8 @@ public interface UserService {
     List<String> getAllUsers();
 
     void addUser(UserDTO userDto);
+
+    UserDTO getUserById(Long userId);
+
+    UserDTO getUserByEmail(String email);
 }
