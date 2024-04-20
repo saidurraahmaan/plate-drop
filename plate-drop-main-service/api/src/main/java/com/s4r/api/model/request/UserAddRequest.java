@@ -1,4 +1,4 @@
-package com.s4r.api.controller.request;
+package com.s4r.api.model.request;
 
 import com.s4r.domain.enums.Role;
 import com.s4r.domain.user.UserDTO;
