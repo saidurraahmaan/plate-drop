@@ -16,13 +16,13 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private static final String AUTHORIZATION_HEADER_NAME = "Authorization";
     private static final String AUTHORIZATION_HEADER_VALUE_PREFIX = "Bearer ";
-    private final HandlerExceptionResolver handlerExceptionResolver;
+//    private final HandlerExceptionResolver handlerExceptionResolver;
 
 
-    public JwtAuthenticationFilter(HandlerExceptionResolver handlerExceptionResolver) {
-
-        this.handlerExceptionResolver = handlerExceptionResolver;
-    }
+//    public JwtAuthenticationFilter(HandlerExceptionResolver handlerExceptionResolver) {
+//
+//        this.handlerExceptionResolver = handlerExceptionResolver;
+//    }
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response,
@@ -53,7 +53,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             filterChain.doFilter(request, response);
         } catch (Exception exception) {
-            handlerExceptionResolver.resolveException(request, response, null, exception);
+//            handlerExceptionResolver.resolveException(request, response, null, exception);
         }
     }
 }
