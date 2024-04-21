@@ -18,4 +18,5 @@ public class CommonUtils {
 //        var message = messageSource.getMessage(key, null, LocaleContextHolder.getLocale());
         return new ErrorResponse(code.value, code.toString());
     }
+
 }

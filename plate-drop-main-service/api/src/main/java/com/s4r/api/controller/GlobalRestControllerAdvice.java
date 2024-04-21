@@ -21,14 +21,15 @@ public class GlobalRestControllerAdvice {
 
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleServiceException(ServiceException exception) {
-
+        log.error("Service EXCEPTION {}", exception.getErrorCode());
         return new ResponseEntity<>(utils.getErrorResponse(exception), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleAllOtherException(Exception exception) {
-        log.error("GENERIC EXCEPTION", exception);
-        return new ResponseEntity<>(utils.getErrorResponse(new ServiceException(ErrorCode.INTERNAL_SERVER_ERROR)),
-                HttpStatus.INTERNAL_SERVER_ERROR);
+        log.error("GENERIC EXCEPTION {}", exception.getMessage());
+        var genericException = new ServiceException(ErrorCode.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(utils.getErrorResponse(genericException), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
 }
