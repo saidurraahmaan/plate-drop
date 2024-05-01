@@ -1,9 +1,8 @@
-package com.s4r.api.model.response;
+package com.s4r.domain.user;
 
 import com.s4r.domain.enums.Role;
-import com.s4r.domain.user.UserDTO;
 
-public class UserResponse {
+public class UserInfo {
     private Long id;
     private String name;
     private String email;
@@ -11,8 +10,20 @@ public class UserResponse {
     private String address;
     private Role role;
 
-    public static UserResponse ofDTO(UserDTO dto) {
-        var result =  new UserResponse();
+    public UserInfo() {
+    }
+
+    public UserInfo(Long id, String name, String email, String phoneNumber, String address, Role role) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.role = role;
+    }
+
+    public static UserInfo ofDTO(UserDTO dto) {
+        var result = new UserInfo();
         result.setId(dto.getId());
         result.setEmail(dto.getEmail());
         result.setName(dto.getName());
@@ -23,19 +34,19 @@ public class UserResponse {
         return result;
     }
 
+    public static UserInfo ofEntity(User user) {
+        var result = new UserInfo();
+        result.setId(user.getId());
+        result.setEmail(user.getEmail());
+        result.setName(user.getName());
+        result.setPhoneNumber(user.getPhoneNumber());
+        result.setAddress(user.getAddress());
+        result.setRole(user.getRole());
 
-    public UserResponse() {
+        return result;
     }
 
-    public UserResponse(Long id, String name, String email, String phoneNumber,
-                        String address, Role role) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-        this.role = role;
-    }
+
 
 
     public Long getId() {

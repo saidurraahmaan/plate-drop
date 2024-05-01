@@ -1,12 +1,13 @@
 package com.s4r.api.security;
 
 import com.s4r.api.model.response.LoginResponse;
-import com.s4r.api.model.response.UserResponse;
+import com.s4r.domain.user.UserInfo;
 
 public interface JwtService {
     boolean isTokenValid(String token);
 
-    LoginResponse generateLoginResponse(UserResponse user);
+    LoginResponse generateLoginResponse(UserInfo user);
 
-    UserResponse parseUserFromToken(String token);
+    UserInfo parseUserFromToken(String token);
+
 }

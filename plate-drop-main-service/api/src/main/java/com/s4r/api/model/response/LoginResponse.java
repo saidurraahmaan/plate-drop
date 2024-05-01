@@ -1,19 +1,21 @@
 package com.s4r.api.model.response;
 
+import com.s4r.domain.user.UserInfo;
+
 public class LoginResponse {
-    private UserResponse user;
+    private UserInfo user;
     private String token;
 
-    public LoginResponse(UserResponse user, String token) {
+    public LoginResponse(UserInfo user, String token) {
         this.user = user;
         this.token = token;
     }
 
-    public UserResponse getUser() {
+    public UserInfo getUser() {
         return user;
     }
 
-    public void setUser(UserResponse user) {
+    public void setUser(UserInfo user) {
         this.user = user;
     }
 
