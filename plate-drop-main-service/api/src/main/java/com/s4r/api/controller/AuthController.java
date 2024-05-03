@@ -31,7 +31,7 @@ public class AuthController {
 
     @PostMapping("/signin")
     public LoginResponse authenticate(@RequestBody LoginRequest request) {
-
+        userService.validateUserCredential(request.getEmail(), request.getPassword());
         var user = userService.getUserByEmail(request.getEmail());
         return jwtService.generateLoginResponse(UserInfo.ofDTO(user));
     }

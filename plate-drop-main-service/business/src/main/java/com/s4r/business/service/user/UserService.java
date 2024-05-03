@@ -12,4 +12,6 @@ public interface UserService {
     UserDTO getUserById(Long userId);
 
     UserDTO getUserByEmail(String email);
+
+    void validateUserCredential(String email, String password);
 }

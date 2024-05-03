@@ -7,7 +7,7 @@ public enum ErrorCode {
 
     //Auth
     INVALID_TOKEN(201),
-
+    BAD_CREDENTIALS(202),
 
 
     //Common Error
