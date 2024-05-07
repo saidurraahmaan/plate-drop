@@ -1,6 +1,8 @@
 package com.s4r.domain.restaurant;
 
+import com.s4r.domain.user.User;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
@@ -31,6 +33,11 @@ public class Restaurant {
 
     @Column(name = "rating", scale = 1, precision = 2)
     private BigDecimal rating;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "owner", foreignKey = @ForeignKey(name = "fk_restaurant_owner"))
+    private User owner;
 
     public Restaurant() {
     }

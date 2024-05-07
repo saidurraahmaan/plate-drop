@@ -1,10 +1,13 @@
 package com.s4r.domain.restaurant;
 
+import jakarta.validation.constraints.NotNull;
+
 import java.math.BigDecimal;
 
 public class RestaurantDTO {
 
     private Long id;
+    @NotNull
     private String name;
     private String cuisine;
     private String description;
