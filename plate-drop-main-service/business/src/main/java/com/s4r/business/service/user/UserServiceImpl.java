@@ -2,7 +2,6 @@ package com.s4r.business.service.user;
 
 import com.s4r.business.service.exception.ErrorCode;
 import com.s4r.business.service.exception.ServiceException;
-import com.s4r.business.service.utils.ServiceUtils;
 import com.s4r.domain.user.UserDTO;
 import com.s4r.persistence.user.UserRepository;
 import org.slf4j.Logger;
@@ -50,9 +49,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO getUserByEmail(String email) {
-        var authUser = ServiceUtils.getAuthenticatedUser();
-        log.trace("authUser:{}", authUser);
-        
+
         var user = userRepo.findByEmail(email);
         if (user == null) {
             throw new ServiceException(ErrorCode.USER_NOT_FOUND);

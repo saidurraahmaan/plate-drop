@@ -36,3 +36,6 @@ public class AuthController {
         return jwtService.generateLoginResponse(UserInfo.ofDTO(user));
     }
 }
+
+
+
