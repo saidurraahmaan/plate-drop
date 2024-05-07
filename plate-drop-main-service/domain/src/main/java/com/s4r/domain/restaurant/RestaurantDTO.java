@@ -23,6 +23,29 @@ public class RestaurantDTO {
         this.rating = rating;
     }
 
+    public static RestaurantDTO ofEntity(Restaurant restaurant) {
+        var restaurantDTO = new RestaurantDTO();
+        restaurantDTO.setId(restaurant.getId());
+        restaurantDTO.setName(restaurant.getName());
+        restaurantDTO.setCuisine(restaurant.getCuisine());
+        restaurantDTO.setDescription(restaurant.getDescription());
+        restaurantDTO.setImageUrl(restaurant.getImageUrl());
+        restaurantDTO.setRating(restaurant.getRating());
+        return restaurantDTO;
+    }
+
+    public static Restaurant toEntity(RestaurantDTO restaurantDTO) {
+        var restaurant = new Restaurant();
+        restaurant.setId(restaurantDTO.getId());
+        restaurant.setName(restaurantDTO.getName());
+        restaurant.setCuisine(restaurantDTO.getCuisine());
+        restaurant.setDescription(restaurantDTO.getDescription());
+        restaurant.setImageUrl(restaurantDTO.getImageUrl());
+        restaurant.setRating(restaurantDTO.getRating());
+        return restaurant;
+    }
+
+
     public Long getId() {
         return id;
     }
