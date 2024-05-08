@@ -3,9 +3,7 @@ package com.s4r.api.controller;
 import com.s4r.business.service.restaurant.RestaurantService;
 import com.s4r.domain.restaurant.RestaurantDTO;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/restaurant")
@@ -18,7 +16,7 @@ public class RestaurantController {
     }
 
     @PostMapping("/save")
-    public void addRestaurant(@Valid RestaurantDTO restaurant) {
+    public void addRestaurant(@Valid @RequestBody RestaurantDTO restaurant) {
         restaurantService.addRestaurant(restaurant);
     }
 
