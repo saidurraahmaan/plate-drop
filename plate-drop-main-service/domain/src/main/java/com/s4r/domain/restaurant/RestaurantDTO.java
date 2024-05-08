@@ -17,6 +17,10 @@ public class RestaurantDTO {
     public RestaurantDTO() {
     }
 
+    public RestaurantDTO(Long id) {
+        this.id = id;
+    }
+
     public RestaurantDTO(Long id, String name, String cuisine, String description, String imageUrl, BigDecimal rating) {
         this.id = id;
         this.name = name;
