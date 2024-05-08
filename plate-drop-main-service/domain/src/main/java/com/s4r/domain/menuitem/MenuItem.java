@@ -3,8 +3,6 @@ package com.s4r.domain.menuitem;
 import com.s4r.domain.restaurant.Restaurant;
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
-
 @Entity
 @Table(name = "menu_items")
 public class MenuItem {
