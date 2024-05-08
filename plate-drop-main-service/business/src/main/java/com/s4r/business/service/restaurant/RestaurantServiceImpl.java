@@ -1,8 +1,10 @@
 package com.s4r.business.service.restaurant;
 
 import com.s4r.business.service.utils.ServiceUtils;
+import com.s4r.domain.menuitem.MenuItemDTO;
 import com.s4r.domain.restaurant.RestaurantDTO;
 import com.s4r.domain.user.User;
+import com.s4r.persistence.menuitem.MenuItemRepository;
 import com.s4r.persistence.restaurant.RestaurantRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -11,9 +13,11 @@ import org.springframework.stereotype.Service;
 public class RestaurantServiceImpl implements RestaurantService {
 
     private final RestaurantRepository restaurantRepo;
+    private final MenuItemRepository menuItemRepo;
 
-    public RestaurantServiceImpl(RestaurantRepository restaurantRepository) {
+    public RestaurantServiceImpl(RestaurantRepository restaurantRepository, MenuItemRepository menuItemRepo) {
         this.restaurantRepo = restaurantRepository;
+        this.menuItemRepo = menuItemRepo;
     }
 
     @Override
@@ -41,5 +45,12 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public RestaurantDTO getRestaurantById(Long id) {
         return null;
+    }
+
+    @Override
+    public void addRestaurantItem(MenuItemDTO restaurantItem) {
+        //todo:check if the restaurant exist or not
+        //todo:check if the the user is the owner or not
+        menuItemRepo.save(MenuItemDTO.toEntity(restaurantItem));
     }
 }

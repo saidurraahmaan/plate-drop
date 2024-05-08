@@ -24,8 +24,8 @@ public class MenuItem {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "price", nullable = false, scale = 10, precision = 2)
-    private BigDecimal price;
+    @Column(name = "price", nullable = false,  precision = 2)
+    private Double price;
 
     @Column(name = "image_url")
     private String imageUrl;
@@ -33,7 +33,7 @@ public class MenuItem {
     public MenuItem() {
     }
 
-    public MenuItem(Long id, Restaurant restaurant, String name, String description, BigDecimal price, String imageUrl) {
+    public MenuItem(Long id, Restaurant restaurant, String name, String description, Double price, String imageUrl) {
         this.id = id;
         this.restaurant = restaurant;
         this.name = name;
@@ -74,11 +74,11 @@ public class MenuItem {
         this.description = description;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

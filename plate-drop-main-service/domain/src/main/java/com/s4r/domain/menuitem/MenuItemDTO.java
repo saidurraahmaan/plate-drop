@@ -1,27 +1,55 @@
 package com.s4r.domain.menuitem;
 
+import com.s4r.domain.restaurant.Restaurant;
+import com.s4r.domain.restaurant.RestaurantDTO;
+
 import java.math.BigDecimal;
 
 public class MenuItemDTO {
 
     private Long id;
-    private Long restaurantId;
+    private RestaurantDTO restaurant;
     private String name;
     private String description;
-    private BigDecimal price;
+    private Double price;
     private String imageUrl;
 
     public MenuItemDTO() {
     }
 
-    public MenuItemDTO(Long id, Long restaurantId, String name, String description, BigDecimal price, String imageUrl) {
+    public MenuItemDTO(Long id, RestaurantDTO restaurant, String name, String description, Double price, String imageUrl) {
         this.id = id;
-        this.restaurantId = restaurantId;
+        this.restaurant = restaurant;
         this.name = name;
         this.description = description;
         this.price = price;
         this.imageUrl = imageUrl;
     }
+
+    public static MenuItemDTO ofEntity(MenuItem menuItem) {
+        var menuItemDTO = new MenuItemDTO();
+        menuItemDTO.setId(menuItem.getId());
+        menuItemDTO.setName(menuItem.getName());
+        menuItemDTO.setDescription(menuItem.getDescription());
+        menuItemDTO.setPrice(menuItem.getPrice());
+        menuItemDTO.setImageUrl(menuItem.getImageUrl());
+        menuItemDTO.setRestaurant(RestaurantDTO.ofEntity(menuItem.getRestaurant()));
+        return menuItemDTO;
+    }
+
+    public static MenuItem toEntity(MenuItemDTO menuItemDTO) {
+        var menuItem = new MenuItem();
+        menuItem.setId(menuItemDTO.getId());
+        menuItem.setName(menuItemDTO.getName());
+        menuItem.setDescription(menuItemDTO.getDescription());
+        menuItem.setPrice(menuItemDTO.getPrice());
+        menuItem.setImageUrl(menuItemDTO.getImageUrl());
+        var res = new Restaurant();
+        res.setId(menuItemDTO.getRestaurant().getId());
+        menuItem.setRestaurant(res);
+        return menuItem;
+    }
+
 
     public Long getId() {
         return id;
@@ -31,12 +59,12 @@ public class MenuItemDTO {
         this.id = id;
     }
 
-    public Long getRestaurantId() {
-        return restaurantId;
+    public RestaurantDTO getRestaurant() {
+        return restaurant;
     }
 
-    public void setRestaurantId(Long restaurantId) {
-        this.restaurantId = restaurantId;
+    public void setRestaurant(RestaurantDTO restaurant) {
+        this.restaurant = restaurant;
     }
 
     public String getName() {
@@ -55,11 +83,11 @@ public class MenuItemDTO {
         this.description = description;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

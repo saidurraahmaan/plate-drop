@@ -1,5 +1,6 @@
 package com.s4r.business.service.restaurant;
 
+import com.s4r.domain.menuitem.MenuItemDTO;
 import com.s4r.domain.restaurant.RestaurantDTO;
 
 public interface RestaurantService {
@@ -10,4 +11,6 @@ public interface RestaurantService {
     void deleteRestaurant(Long id);
 
     RestaurantDTO getRestaurantById(Long id);
+
+    void addRestaurantItem(MenuItemDTO restaurantItem);
 }
