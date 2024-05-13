@@ -42,13 +42,18 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public Restaurant(Long id, String name, String cuisine, String description, String imageUrl, BigDecimal rating) {
+    public Restaurant(Long id) {
+        this.id = id;
+    }
+
+    public Restaurant(Long id, String name, String cuisine, String description, String imageUrl, BigDecimal rating, User owner) {
         this.id = id;
         this.name = name;
         this.cuisine = cuisine;
         this.description = description;
         this.imageUrl = imageUrl;
         this.rating = rating;
+        this.owner = owner;
     }
 
     public Long getId() {
@@ -97,5 +102,13 @@ public class Restaurant {
 
     public void setRating(BigDecimal rating) {
         this.rating = rating;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }

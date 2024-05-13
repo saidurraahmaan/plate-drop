@@ -5,8 +5,6 @@ import com.s4r.domain.restaurant.Restaurant;
 import com.s4r.domain.user.User;
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
-
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -17,8 +15,8 @@ public class Order {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "order_by", nullable = false)
+    private User orderBy;
 
     @ManyToOne
     @JoinColumn(name = "restaurant_id", nullable = false)
@@ -27,8 +25,8 @@ public class Order {
 //    @Column(name = "created_at", nullable = false)
 //    private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
-    @Column(name = "total_price", nullable = false, scale = 10, precision = 2)
-    private BigDecimal totalPrice;
+    @Column(name = "total_price", nullable = false,  precision = 2)
+    private Double totalPrice;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
@@ -37,9 +35,9 @@ public class Order {
     public Order() {
     }
 
-    public Order(Long id, User user, Restaurant restaurant, BigDecimal totalPrice, OrderStatus status) {
+    public Order(Long id, User user, Restaurant restaurant, Double totalPrice, OrderStatus status) {
         this.id = id;
-        this.user = user;
+        this.orderBy = user;
         this.restaurant = restaurant;
         this.totalPrice = totalPrice;
         this.status = status;
@@ -53,12 +51,12 @@ public class Order {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public User getOrderBy() {
+        return orderBy;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setOrderBy(User user) {
+        this.orderBy = user;
     }
 
     public Restaurant getRestaurant() {
@@ -69,11 +67,11 @@ public class Order {
         this.restaurant = restaurant;
     }
 
-    public BigDecimal getTotalPrice() {
+    public Double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(BigDecimal totalPrice) {
+    public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
     }
 

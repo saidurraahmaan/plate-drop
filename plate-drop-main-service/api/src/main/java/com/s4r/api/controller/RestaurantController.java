@@ -1,11 +1,10 @@
 package com.s4r.api.controller;
 
 import com.s4r.business.service.restaurant.RestaurantService;
+import com.s4r.domain.menuitem.MenuItemDTO;
 import com.s4r.domain.restaurant.RestaurantDTO;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/restaurant")
@@ -17,8 +16,8 @@ public class RestaurantController {
         this.restaurantService = restaurantService;
     }
 
-    @PostMapping("/save")
-    public void addRestaurant(@Valid RestaurantDTO restaurant) {
+    @PostMapping("/add")
+    public void addRestaurant(@Valid @RequestBody RestaurantDTO restaurant) {
         restaurantService.addRestaurant(restaurant);
     }
 
@@ -28,6 +27,13 @@ public class RestaurantController {
 
     public void deleteRestaurant(Long id) {
         restaurantService.deleteRestaurant(id);
+    }
+
+    @PostMapping("/add/menu/{restaurantId}")
+    public void addMenuItem(@PathVariable Long restaurantId, @RequestBody MenuItemDTO menuItemDTO) {
+        var s = new RestaurantDTO(restaurantId);
+        menuItemDTO.setRestaurant(s);
+        restaurantService.addRestaurantItem(menuItemDTO);
     }
 
 }
