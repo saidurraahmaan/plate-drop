@@ -1,14 +1,16 @@
 package com.s4r.domain.orderitem;
 
+import com.s4r.domain.menuitem.MenuItemDTO;
+
 public class OrderItemDTO {
 
     private Long id;
-    private Long menuItemId;
+    private MenuItemDTO menuItemId;
 
     public OrderItemDTO() {
     }
 
-    public OrderItemDTO(Long id, Long menuItemId) {
+    public OrderItemDTO(Long id, MenuItemDTO menuItemId) {
         this.id = id;
         this.menuItemId = menuItemId;
     }
@@ -21,11 +23,11 @@ public class OrderItemDTO {
         this.id = id;
     }
 
-    public Long getMenuItemId() {
+    public MenuItemDTO getMenuItemId() {
         return menuItemId;
     }
 
-    public void setMenuItemId(Long menuItemId) {
+    public void setMenuItemId(MenuItemDTO menuItemId) {
         this.menuItemId = menuItemId;
     }
 }

@@ -1,5 +1,7 @@
 package com.s4r.domain.menuitem;
 
+import com.s4r.domain.orderitem.OrderItem;
+import com.s4r.domain.orderitem.OrderItemDTO;
 import com.s4r.domain.restaurant.Restaurant;
 import com.s4r.domain.restaurant.RestaurantDTO;
 
@@ -33,6 +35,7 @@ public class MenuItemDTO {
         menuItemDTO.setImageUrl(menuItem.getImageUrl());
         return menuItemDTO;
     }
+
 
     public static MenuItem toEntity(MenuItemDTO menuItemDTO) {
         var menuItem = new MenuItem();
