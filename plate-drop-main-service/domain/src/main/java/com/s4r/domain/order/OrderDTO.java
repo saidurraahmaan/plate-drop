@@ -1,26 +1,36 @@
 package com.s4r.domain.order;
 
 import com.s4r.domain.enums.OrderStatus;
+import com.s4r.domain.orderitem.OrderItemDTO;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 public class OrderDTO {
 
     private Long id;
-    private Long userId;
+    private Integer orderBy;
     private Long restaurantId;
-    private BigDecimal totalPrice;
+    private Double totalPrice;
     private OrderStatus status;
+    private List<OrderItemDTO> orderItems;
 
     public OrderDTO() {
     }
 
-    public OrderDTO(Long id, Long userId, Long restaurantId, BigDecimal totalPrice, OrderStatus status) {
+    public OrderDTO(Long id, Integer userId, Long restaurantId, Double totalPrice, OrderStatus status, List<OrderItemDTO> orderItems) {
         this.id = id;
-        this.userId = userId;
+        this.orderBy = userId;
         this.restaurantId = restaurantId;
         this.totalPrice = totalPrice;
         this.status = status;
+        this.orderItems = orderItems;
+    }
+
+    public static Order toEntity(OrderDTO orderDTO) {
+        Order order = new Order();
+        order.setId(orderDTO.getId());
+        order.setStatus(orderDTO.getStatus());
+        return order;
     }
 
     public Long getId() {
@@ -31,12 +41,12 @@ public class OrderDTO {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Integer getOrderBy() {
+        return orderBy;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setOrderBy(Integer orderBy) {
+        this.orderBy = orderBy;
     }
 
     public Long getRestaurantId() {
@@ -47,11 +57,11 @@ public class OrderDTO {
         this.restaurantId = restaurantId;
     }
 
-    public BigDecimal getTotalPrice() {
+    public Double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(BigDecimal totalPrice) {
+    public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -61,5 +71,14 @@ public class OrderDTO {
 
     public void setStatus(OrderStatus status) {
         this.status = status;
+    }
+
+
+    public List<OrderItemDTO> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItemDTO> orderItems) {
+        this.orderItems = orderItems;
     }
 }

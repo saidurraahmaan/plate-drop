@@ -3,8 +3,6 @@ package com.s4r.domain.menuitem;
 import com.s4r.domain.restaurant.Restaurant;
 import com.s4r.domain.restaurant.RestaurantDTO;
 
-import java.math.BigDecimal;
-
 public class MenuItemDTO {
 
     private Long id;
@@ -33,7 +31,6 @@ public class MenuItemDTO {
         menuItemDTO.setDescription(menuItem.getDescription());
         menuItemDTO.setPrice(menuItem.getPrice());
         menuItemDTO.setImageUrl(menuItem.getImageUrl());
-        menuItemDTO.setRestaurant(RestaurantDTO.ofEntity(menuItem.getRestaurant()));
         return menuItemDTO;
     }
 
