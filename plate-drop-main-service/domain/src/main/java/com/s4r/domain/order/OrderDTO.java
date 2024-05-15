@@ -1,7 +1,7 @@
 package com.s4r.domain.order;
 
 import com.s4r.domain.enums.OrderStatus;
-import com.s4r.domain.orderitem.OrderItemDTO;
+import com.s4r.domain.menuitem.MenuItemDTO;
 
 import java.util.List;
 
@@ -12,12 +12,12 @@ public class OrderDTO {
     private Long restaurantId;
     private Double totalPrice;
     private OrderStatus status;
-    private List<OrderItemDTO> orderItems;
+    private List<MenuItemDTO> orderItems;
 
     public OrderDTO() {
     }
 
-    public OrderDTO(Long id, Integer userId, Long restaurantId, Double totalPrice, OrderStatus status, List<OrderItemDTO> orderItems) {
+    public OrderDTO(Long id, Integer userId, Long restaurantId, Double totalPrice, OrderStatus status, List<MenuItemDTO> orderItems) {
         this.id = id;
         this.orderBy = userId;
         this.restaurantId = restaurantId;
@@ -74,11 +74,11 @@ public class OrderDTO {
     }
 
 
-    public List<OrderItemDTO> getOrderItems() {
+    public List<MenuItemDTO> getOrderItems() {
         return orderItems;
     }
 
-    public void setOrderItems(List<OrderItemDTO> orderItems) {
+    public void setOrderItems(List<MenuItemDTO> orderItems) {
         this.orderItems = orderItems;
     }
 }
