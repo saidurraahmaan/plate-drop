@@ -9,7 +9,7 @@ public class OrderDTO {
 
     private Long id;
     private Integer orderBy;
-    private Long restaurantId;
+    private int restaurantId;
     private Double totalPrice;
     private OrderStatus status;
     private List<MenuItemDTO> orderItems;
@@ -17,7 +17,11 @@ public class OrderDTO {
     public OrderDTO() {
     }
 
-    public OrderDTO(Long id, Integer userId, Long restaurantId, Double totalPrice, OrderStatus status, List<MenuItemDTO> orderItems) {
+    public OrderDTO(Long id) {
+        this.id = id;
+    }
+
+    public OrderDTO(Long id, Integer userId, int restaurantId, Double totalPrice, OrderStatus status, List<MenuItemDTO> orderItems) {
         this.id = id;
         this.orderBy = userId;
         this.restaurantId = restaurantId;
@@ -49,11 +53,11 @@ public class OrderDTO {
         this.orderBy = orderBy;
     }
 
-    public Long getRestaurantId() {
+    public int getRestaurantId() {
         return restaurantId;
     }
 
-    public void setRestaurantId(Long restaurantId) {
+    public void setRestaurantId(int restaurantId) {
         this.restaurantId = restaurantId;
     }
 
