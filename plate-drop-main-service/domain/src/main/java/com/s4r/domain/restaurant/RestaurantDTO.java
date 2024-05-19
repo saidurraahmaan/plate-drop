@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 public class RestaurantDTO {
 
-    private Long id;
+    private Integer id;
     @NotNull
     private String name;
     private String cuisine;
@@ -17,11 +17,11 @@ public class RestaurantDTO {
     public RestaurantDTO() {
     }
 
-    public RestaurantDTO(Long id) {
+    public RestaurantDTO(Integer id) {
         this.id = id;
     }
 
-    public RestaurantDTO(Long id, String name, String cuisine, String description, String imageUrl, BigDecimal rating) {
+    public RestaurantDTO(Integer id, String name, String cuisine, String description, String imageUrl, BigDecimal rating) {
         this.id = id;
         this.name = name;
         this.cuisine = cuisine;
@@ -53,11 +53,11 @@ public class RestaurantDTO {
     }
 
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

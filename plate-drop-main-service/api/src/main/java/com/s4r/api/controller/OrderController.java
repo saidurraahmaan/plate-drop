@@ -1,5 +1,6 @@
 package com.s4r.api.controller;
 
+import com.s4r.api.model.request.OrderRequest;
 import com.s4r.business.service.order.OrderService;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +14,8 @@ public class OrderController {
     }
 
     @PostMapping("/place-order")
-    public void placeOrder(@RequestParam Long userId, @RequestParam Long orderId) {
-
+    public void placeOrder(@RequestBody OrderRequest orderRequest) {
+        orderService.placeOrder(OrderRequest.toOrderDTO(orderRequest));
     }
 
 }

@@ -15,6 +15,10 @@ public class MenuItemDTO {
     public MenuItemDTO() {
     }
 
+    public MenuItemDTO(Long id) {
+        this.id = id;
+    }
+
     public MenuItemDTO(Long id, RestaurantDTO restaurant, String name, String description, Double price, String imageUrl) {
         this.id = id;
         this.restaurant = restaurant;

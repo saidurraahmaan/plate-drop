@@ -13,7 +13,7 @@ public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -42,11 +42,11 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public Restaurant(Long id) {
+    public Restaurant(Integer id) {
         this.id = id;
     }
 
-    public Restaurant(Long id, String name, String cuisine, String description, String imageUrl, BigDecimal rating, User owner) {
+    public Restaurant(Integer id, String name, String cuisine, String description, String imageUrl, BigDecimal rating, User owner) {
         this.id = id;
         this.name = name;
         this.cuisine = cuisine;
@@ -56,11 +56,11 @@ public class Restaurant {
         this.owner = owner;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
