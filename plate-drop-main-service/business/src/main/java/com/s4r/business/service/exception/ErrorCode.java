@@ -10,7 +10,8 @@ public enum ErrorCode {
     BAD_CREDENTIALS(202),
 
 
-    //Common Error
+    //Common Error,
+    NOT_FOUND(99998),
     INTERNAL_SERVER_ERROR(9999);
 
     public final int value;

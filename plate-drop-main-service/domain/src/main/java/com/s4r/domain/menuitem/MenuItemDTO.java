@@ -3,8 +3,6 @@ package com.s4r.domain.menuitem;
 import com.s4r.domain.restaurant.Restaurant;
 import com.s4r.domain.restaurant.RestaurantDTO;
 
-import java.math.BigDecimal;
-
 public class MenuItemDTO {
 
     private Long id;
@@ -15,6 +13,10 @@ public class MenuItemDTO {
     private String imageUrl;
 
     public MenuItemDTO() {
+    }
+
+    public MenuItemDTO(Long id) {
+        this.id = id;
     }
 
     public MenuItemDTO(Long id, RestaurantDTO restaurant, String name, String description, Double price, String imageUrl) {
@@ -33,9 +35,9 @@ public class MenuItemDTO {
         menuItemDTO.setDescription(menuItem.getDescription());
         menuItemDTO.setPrice(menuItem.getPrice());
         menuItemDTO.setImageUrl(menuItem.getImageUrl());
-        menuItemDTO.setRestaurant(RestaurantDTO.ofEntity(menuItem.getRestaurant()));
         return menuItemDTO;
     }
+
 
     public static MenuItem toEntity(MenuItemDTO menuItemDTO) {
         var menuItem = new MenuItem();
