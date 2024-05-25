@@ -25,6 +25,7 @@ public class OrderServiceImpl implements OrderService {
             log.warn("Restaurant not exist for id: {}", order.getRestaurantId());
             throw new ServiceException(ErrorCode.USER_NOT_FOUND);
         }
+        //check if all the menu items valid or not
 
     }
 }
