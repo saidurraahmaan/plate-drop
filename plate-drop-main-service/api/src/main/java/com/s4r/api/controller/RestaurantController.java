@@ -30,7 +30,7 @@ public class RestaurantController {
     }
 
     @PostMapping("/add/menu/{restaurantId}")
-    public void addMenuItem(@PathVariable Long restaurantId, @RequestBody MenuItemDTO menuItemDTO) {
+    public void addMenuItem(@PathVariable Integer restaurantId, @RequestBody MenuItemDTO menuItemDTO) {
         var s = new RestaurantDTO(restaurantId);
         menuItemDTO.setRestaurant(s);
         restaurantService.addRestaurantItem(menuItemDTO);
