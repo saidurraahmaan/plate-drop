@@ -8,7 +8,8 @@ security:
 
 
 spring:
-  profiles.active: dev
+  profiles:
+    active: dev
   data:
     jpa:
       repositories:
