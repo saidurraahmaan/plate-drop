@@ -1,5 +1,6 @@
 package com.s4r.domain.menuitem;
 
+import com.s4r.domain.menu.Menu;
 import com.s4r.domain.restaurant.Restaurant;
 import jakarta.persistence.*;
 
@@ -13,8 +14,8 @@ public class MenuItem {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "restaurant_id", nullable = false)
-    private Restaurant restaurant;
+    @JoinColumn(name = "menu_id", nullable = false)
+    private Menu menu;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -31,9 +32,9 @@ public class MenuItem {
     public MenuItem() {
     }
 
-    public MenuItem(Long id, Restaurant restaurant, String name, String description, Double price, String imageUrl) {
+    public MenuItem(Long id, Menu menu, String name, String description, Double price, String imageUrl) {
         this.id = id;
-        this.restaurant = restaurant;
+        this.menu = menu;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -48,12 +49,12 @@ public class MenuItem {
         this.id = id;
     }
 
-    public Restaurant getRestaurant() {
-        return restaurant;
+    public Menu getMenu() {
+        return menu;
     }
 
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public void setMenu(Menu menu) {
+        this.menu = menu;
     }
 
     public String getName() {

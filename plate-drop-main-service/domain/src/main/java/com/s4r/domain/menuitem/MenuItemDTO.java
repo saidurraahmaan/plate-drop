@@ -46,9 +46,6 @@ public class MenuItemDTO {
         menuItem.setDescription(menuItemDTO.getDescription());
         menuItem.setPrice(menuItemDTO.getPrice());
         menuItem.setImageUrl(menuItemDTO.getImageUrl());
-        var res = new Restaurant();
-        res.setId(menuItemDTO.getRestaurant().getId());
-        menuItem.setRestaurant(res);
         return menuItem;
     }
 
