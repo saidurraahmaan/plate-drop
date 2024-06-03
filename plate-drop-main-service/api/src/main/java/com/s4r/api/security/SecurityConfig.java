@@ -12,7 +12,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 public class SecurityConfig {
-    private static final String[] WHITE_LIST_URL = {"/auth/**"};
+    private static final String[] WHITE_LIST_URL = {
+            "/auth/**",
+            "/swagger-ui/**",
+            "/swagger-resources/**",
+            "/swagger-ui.html",
+            "/v3/api-docs",
+    };
     private final JwtService jwtService;
 
     public SecurityConfig(JwtService jwtService) {
@@ -22,12 +28,10 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests((authorize) -> {
-                    authorize.requestMatchers(WHITE_LIST_URL)
-                            .permitAll()
-                            .anyRequest()
-                            .authenticated();
-                })
+                .authorizeHttpRequests((authorize) -> authorize.requestMatchers(WHITE_LIST_URL)
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated())
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
