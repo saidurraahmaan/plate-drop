@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import type { FormProps } from 'antd';
-import { Button, Checkbox, Form } from 'antd';
+import { Checkbox, Form } from 'antd';
 import styles from './login.module.css';
 import { PasswordInput, PrimaryButton, PrimaryInput } from '@/components';
 
@@ -30,9 +30,9 @@ const Login: React.FC = () => {
           autoComplete="off"
         >
           <Form.Item<LoginFieldType>
-            label="Username"
-            name="username"
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            label="Email"
+            name="email"
+            rules={[{ required: true, message: 'Please input your email!' }]}
           >
             <PrimaryInput />
           </Form.Item>

@@ -22,7 +22,7 @@ const RootLayout = ({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="plate-drop-logo.png" />
+        <link rel="icon" href="/plate-drop-logo.png" />
       </head>
       <body className={inter.className}>
         <AntdRegistry>

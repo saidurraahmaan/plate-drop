@@ -1,5 +1,5 @@
 type LoginFieldType = {
-  username?: string;
+  email?: string;
   password?: string;
   remember?: string;
 };
