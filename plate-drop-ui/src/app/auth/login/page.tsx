@@ -1,8 +1,9 @@
 'use client';
 import React from 'react';
 import type { FormProps } from 'antd';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Checkbox, Form } from 'antd';
 import styles from './login.module.css';
+import { PasswordInput, PrimaryButton, PrimaryInput } from '@/components';
 
 const Login: React.FC = () => {
   const onFinish: FormProps<LoginFieldType>['onFinish'] = (values) => {
@@ -33,7 +34,7 @@ const Login: React.FC = () => {
             name="username"
             rules={[{ required: true, message: 'Please input your username!' }]}
           >
-            <Input />
+            <PrimaryInput />
           </Form.Item>
 
           <Form.Item<LoginFieldType>
@@ -41,7 +42,7 @@ const Login: React.FC = () => {
             name="password"
             rules={[{ required: true, message: 'Please input your password!' }]}
           >
-            <Input.Password />
+            <PasswordInput />
           </Form.Item>
 
           <Form.Item<LoginFieldType>
@@ -53,9 +54,7 @@ const Login: React.FC = () => {
           </Form.Item>
 
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
+            <PrimaryButton htmlType="submit">Submit</PrimaryButton>
           </Form.Item>
         </Form>
       </div>
