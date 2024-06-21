@@ -14,7 +14,7 @@ public class MenuItem {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "menu_id", nullable = false)
+    @JoinColumn(name = "menu_id", nullable = false, foreignKey = @ForeignKey(name = "fk_menu_item_menu"))
     private Menu menu;
 
     @Column(name = "name", nullable = false)
@@ -23,7 +23,7 @@ public class MenuItem {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "price", nullable = false,  precision = 2)
+    @Column(name = "price", nullable = false, precision = 2)
     private Double price;
 
     @Column(name = "image_url")
