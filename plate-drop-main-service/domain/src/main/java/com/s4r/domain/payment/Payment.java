@@ -20,7 +20,7 @@ public class Payment {
     private LocalDateTime paymentOn;
 
     @OneToOne
-    @JoinColumn(name = "order_id", nullable = false, unique = true,foreignKey = @ForeignKey(name = "fk_payment_order_id"))
+    @JoinColumn(name = "order_id", nullable = false, unique = true,foreignKey = @ForeignKey(name = "fk_payment_order"))
     private Order order;
 
     // Constructors, getters and setters

@@ -25,11 +25,11 @@ public class Delivery {
     private LocalDateTime deliveryTime;
 
     @ManyToOne
-    @JoinColumn(name = "delivered_by_user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_delivery_by_user_id"))
+    @JoinColumn(name = "delivered_by_user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_delivery_user"))
     private User deliveredBy;
 
     @OneToOne
-    @JoinColumn(name = "order_id", nullable = false, unique = true, foreignKey = @ForeignKey(name = "fk_delivery_order_id"))
+    @JoinColumn(name = "order_id", nullable = false, unique = true, foreignKey = @ForeignKey(name = "fk_delivery_order"))
     private Order order;
 
     // Constructors, getters and setters

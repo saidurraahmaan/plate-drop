@@ -16,7 +16,7 @@ public class Menu {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "restaurant_id", nullable = false)
+    @JoinColumn(name = "restaurant_id", nullable = false, foreignKey = @ForeignKey(name = "fk_menu_restaurant"))
     private Restaurant restaurant;
 
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

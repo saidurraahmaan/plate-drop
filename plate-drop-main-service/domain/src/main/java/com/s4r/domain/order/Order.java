@@ -15,17 +15,17 @@ public class Order {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "order_by", nullable = false)
+    @JoinColumn(name = "order_by", nullable = false, foreignKey = @ForeignKey(name = "fk_order_user"))
     private User orderBy;
 
     @ManyToOne
-    @JoinColumn(name = "restaurant_id", nullable = false)
+    @JoinColumn(name = "restaurant_id", nullable = false, foreignKey = @ForeignKey(name = "fk_order_restaurant"))
     private Restaurant restaurant;
 
 //    @Column(name = "created_at", nullable = false)
 //    private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
-    @Column(name = "total_price", nullable = false,  precision = 2)
+    @Column(name = "total_price", nullable = false, precision = 2)
     private Double totalPrice;
 
     @Enumerated(EnumType.STRING)

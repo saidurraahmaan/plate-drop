@@ -36,7 +36,7 @@ public class Restaurant {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "owner", foreignKey = @ForeignKey(name = "fk_restaurant_owner"))
+    @JoinColumn(name = "owner", foreignKey = @ForeignKey(name = "fk_restaurant_user"))
     private User owner;
 
     public Restaurant() {

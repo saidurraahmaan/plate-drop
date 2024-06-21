@@ -14,11 +14,11 @@ public class OrderItem {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "order_id", nullable = false, foreignKey = @ForeignKey(name = "fk_order_items_order"))
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name = "menu_item_id", nullable = false)
+    @JoinColumn(name = "menu_item_id", nullable = false, foreignKey = @ForeignKey(name = "fk_order_items_menu_items"))
     private MenuItem menuItem;
 
     public OrderItem() {
