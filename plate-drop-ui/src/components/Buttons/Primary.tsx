@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, ReactNode } from 'react';
+import React from 'react';
 import { Button, ButtonProps } from 'antd';
 
 const PrimaryButton: React.FC<ButtonProps> = ({ children }) => {
