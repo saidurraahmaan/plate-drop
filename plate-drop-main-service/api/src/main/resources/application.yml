@@ -2,6 +2,7 @@ app:
   default-language: english
 
 security:
+  cors-domains: http://localhost:3000
   jwt:
     expiration-time: 3600000
     secret-key: fddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddsdfssssssssss

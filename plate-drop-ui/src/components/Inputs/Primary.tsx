@@ -1,8 +1,8 @@
 import React from 'react';
 import { Input, InputProps } from 'antd';
 
-const PrimaryInput: React.FC<InputProps> = () => {
-  return <Input />;
+const PrimaryInput: React.FC<InputProps> = ({ ...rest }) => {
+  return <Input {...rest} />;
 };
 
 export default PrimaryInput;

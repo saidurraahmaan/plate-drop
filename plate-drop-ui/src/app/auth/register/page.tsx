@@ -1,13 +1,24 @@
 'use client';
 import React from 'react';
-import { Form } from 'antd';
+import { Form, message } from 'antd';
 import type { FormProps } from 'antd';
 import styles from './register.module.css';
 import { PasswordInput, PrimaryButton, PrimaryInput } from '@/components';
+import fetchInstance from '@/libs/fetchApi';
 
 const Register = () => {
-  const onFinish: FormProps<RegisterFieldType>['onFinish'] = (values) => {
-    console.log('Success:', values);
+  const onFinish: FormProps<RegisterFieldType>['onFinish'] = async (values) => {
+    try {
+      const response = await fetchInstance.post<void, RegisterFieldType>(
+        '/auth/signup',
+        values
+      );
+      console.log('Success:', response);
+      message.success('Registration successful!');
+    } catch (error) {
+      console.error('Failed:', error);
+      message.error('Registration failed. Please try again.');
+    }
   };
 
   const onFinishFailed: FormProps<RegisterFieldType>['onFinishFailed'] = (
@@ -21,6 +32,7 @@ const Register = () => {
       <div className="my-4 fw-bold">Register</div>
       <div>
         <Form
+          name="registration"
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           style={{ maxWidth: 600 }}

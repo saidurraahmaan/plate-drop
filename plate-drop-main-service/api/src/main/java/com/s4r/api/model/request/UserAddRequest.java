@@ -11,18 +11,18 @@ public class UserAddRequest {
     @NotNull
     private String email;
     @NotNull
-    private String phoneNumber;
+    private String phone;
     @NotNull
     private String password;
     private String address;
     @NotNull
-    private Role role;
+    private Role role = Role.CUSTOMER;
 
 
     public static UserDTO toDto(UserAddRequest request) {
 
         return new UserDTO(request.getId(), request.getName(),
-                request.getEmail(), request.getPhoneNumber(),
+                request.getEmail(), request.getPhone(),
                 request.getAddress(), request.getPassword(),
                 request.getRole());
     }
@@ -34,7 +34,7 @@ public class UserAddRequest {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.phoneNumber = phoneNumber;
+        this.phone = phoneNumber;
         this.password = password;
         this.address = address;
         this.role = role;
@@ -64,12 +64,12 @@ public class UserAddRequest {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(String phoneNumber) {
+        this.phone = phoneNumber;
     }
 
     public String getPassword() {
