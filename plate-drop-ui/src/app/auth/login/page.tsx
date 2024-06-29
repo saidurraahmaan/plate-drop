@@ -1,13 +1,25 @@
 'use client';
 import React from 'react';
 import type { FormProps } from 'antd';
-import { Checkbox, Form } from 'antd';
+import { Checkbox, Form, message } from 'antd';
 import styles from './login.module.css';
 import { PasswordInput, PrimaryButton, PrimaryInput } from '@/components';
+import fetchInstance from '@/libs/fetchApi';
+import { AUTH_API } from '@/constants';
 
 const Login: React.FC = () => {
-  const onFinish: FormProps<LoginFieldType>['onFinish'] = (values) => {
-    console.log('Success:', values);
+  const onFinish: FormProps<LoginFieldType>['onFinish'] = async (values) => {
+    try {
+      const data = await fetchInstance.post<void, LoginFieldType>(
+        AUTH_API.SIGNIN,
+        values
+      );
+      console.log(data);
+      message.success('Login Success');
+    } catch (error) {
+      const err = error as Error;
+      message.error(err.message);
+    }
   };
 
   const onFinishFailed: FormProps<LoginFieldType>['onFinishFailed'] = (

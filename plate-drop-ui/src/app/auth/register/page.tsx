@@ -5,16 +5,20 @@ import type { FormProps } from 'antd';
 import styles from './register.module.css';
 import { PasswordInput, PrimaryButton, PrimaryInput } from '@/components';
 import fetchInstance from '@/libs/fetchApi';
+import { AUTH_API, APP_ROUTES } from '@/constants';
+import { useRouter } from 'next/navigation';
 
 const Register = () => {
+  const router = useRouter();
+
   const onFinish: FormProps<RegisterFieldType>['onFinish'] = async (values) => {
     try {
-      const response = await fetchInstance.post<void, RegisterFieldType>(
-        '/auth/signup',
+      await fetchInstance.post<void, RegisterFieldType>(
+        AUTH_API.SIGNUP,
         values
       );
-      console.log('Success:', response);
       message.success('Registration successful!');
+      router.push(APP_ROUTES.LOGIN);
     } catch (error) {
       console.error('Failed:', error);
       message.error('Registration failed. Please try again.');

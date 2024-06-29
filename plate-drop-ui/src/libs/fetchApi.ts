@@ -12,7 +12,7 @@ interface FetchOptions {
 const fetchApi = async <T>(
   endpoint: string,
   { method = 'GET', body, cache = 'default', revalidate }: FetchOptions = {}
-): Promise<any> => {
+): Promise<T | null> => {
   const headers = new Headers({
     'Content-Type': 'application/json',
   });
@@ -32,27 +32,17 @@ const fetchApi = async <T>(
   const contentType = res.headers.get('Content-Type') || '';
 
   // Log the raw response for debugging
-  const rawResponse = await res.text();
 
   if (!res.ok) {
-    throw new Error(`An error occurred: ${res.statusText}`);
+    const data = await res.json();
+    throw new Error(data.message);
   }
 
-  if (contentType.includes('text/plain;charset=UTF-8')) {
-    try {
-      const data = JSON.parse(rawResponse);
-      console.log('data');
-      return data as T;
-    } catch (error) {
-      if (error instanceof Error) {
-        throw new Error(`Failed to parse JSON: ${error.message}`);
-      } else {
-        throw new Error('Failed to parse JSON: Unknown error');
-      }
-    }
-  } else {
-    throw new Error('Received non-JSON response');
+  const contentLength = res.headers.get('Content-Length');
+  if (contentLength === '0' || !contentType.includes('application/json')) {
+    return null;
   }
+  return res.json();
 };
 
 const fetchInstance = {
@@ -60,13 +50,13 @@ const fetchInstance = {
     endpoint: string,
     cache?: RequestCache,
     revalidate?: number
-  ): Promise<T> => {
+  ): Promise<T | null> => {
     return fetchApi<T>(endpoint, { method: 'GET', cache, revalidate });
   },
-  post: async <T, U>(endpoint: string, body: U): Promise<T> => {
+  post: async <T, U>(endpoint: string, body: U): Promise<T | null> => {
     return fetchApi<T>(endpoint, { method: 'POST', body });
   },
-  del: async <T, U>(endpoint: string, body: U): Promise<T> => {
+  del: async <T, U>(endpoint: string, body: U): Promise<T | null> => {
     return fetchApi<T>(endpoint, { method: 'DELETE', body });
   },
 };
