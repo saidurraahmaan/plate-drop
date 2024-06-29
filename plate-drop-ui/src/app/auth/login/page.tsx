@@ -6,8 +6,11 @@ import styles from './login.module.css';
 import { PasswordInput, PrimaryButton, PrimaryInput } from '@/components';
 import fetchInstance from '@/libs/fetchApi';
 import { AUTH_API } from '@/constants';
+import {} from '../../../store/index.ts';
 
 const Login: React.FC = () => {
+  const {} = useStore();
+
   const onFinish: FormProps<LoginFieldType>['onFinish'] = async (values) => {
     try {
       const data = await fetchInstance.post<void, LoginFieldType>(
