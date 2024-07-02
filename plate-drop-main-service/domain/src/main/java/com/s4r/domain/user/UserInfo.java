@@ -6,7 +6,7 @@ public class UserInfo {
     private Long id;
     private String name;
     private String email;
-    private String phoneNumber;
+    private String phone;
     private String address;
     private Role role;
 
@@ -17,7 +17,7 @@ public class UserInfo {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.phoneNumber = phoneNumber;
+        this.phone = phoneNumber;
         this.address = address;
         this.role = role;
     }
@@ -27,7 +27,7 @@ public class UserInfo {
         result.setId(dto.getId());
         result.setEmail(dto.getEmail());
         result.setName(dto.getName());
-        result.setPhoneNumber(dto.getPhoneNumber());
+        result.setPhone(dto.getPhoneNumber());
         result.setAddress(dto.getAddress());
         result.setRole(dto.getRole());
 
@@ -39,7 +39,7 @@ public class UserInfo {
         result.setId(user.getId());
         result.setEmail(user.getEmail());
         result.setName(user.getName());
-        result.setPhoneNumber(user.getPhoneNumber());
+        result.setPhone(user.getPhoneNumber());
         result.setAddress(user.getAddress());
         result.setRole(user.getRole());
 
@@ -73,12 +73,12 @@ public class UserInfo {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getAddress() {
