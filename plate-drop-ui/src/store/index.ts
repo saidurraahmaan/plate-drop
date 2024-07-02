@@ -1,11 +1,13 @@
 // src/store/index.ts
 import { create } from 'zustand';
-import { AuthSliceState, createAuthSlice } from './authSlice';
+import { IAuthSliceState, createAuthSlice } from './authSlice';
 
-type StoreState = AuthSliceState;
+type StoreState = IAuthSliceState;
 
-const useStore = create<StoreState>((set, get) => ({
-  ...createAuthSlice(set, get),
-}));
+const useStore = create<StoreState>()((...a) => ({
+  ...createAuthSlice(...a),
+}))
+
 
 export default useStore;
+

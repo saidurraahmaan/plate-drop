@@ -5,20 +5,28 @@ import { Checkbox, Form, message } from 'antd';
 import styles from './login.module.css';
 import { PasswordInput, PrimaryButton, PrimaryInput } from '@/components';
 import fetchInstance from '@/libs/fetchApi';
-import { AUTH_API } from '@/constants';
-import {} from '../../../store/index.ts';
+import { APP_ROUTES, AUTH_API } from '@/constants';
+import useStore from '@/store';
+import { useRouter } from 'next/navigation';
 
 const Login: React.FC = () => {
-  const {} = useStore();
+
+  const router = useRouter();
+  const {login} = useStore();
+
+
 
   const onFinish: FormProps<LoginFieldType>['onFinish'] = async (values) => {
     try {
-      const data = await fetchInstance.post<void, LoginFieldType>(
+      const data = await fetchInstance.post<{user:IUser; token:IJWTToken}, LoginFieldType>(
         AUTH_API.SIGNIN,
         values
       );
-      console.log(data);
-      message.success('Login Success');
+      if(data){
+        login(data.user,data.token)
+        message.success('Login Success');
+      }
+      router.push(APP_ROUTES.HOME)
     } catch (error) {
       const err = error as Error;
       message.error(err.message);
