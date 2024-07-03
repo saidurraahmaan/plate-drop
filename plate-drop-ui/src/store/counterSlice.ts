@@ -1,3 +1,4 @@
+import { IUser } from '@/types/User';
 import { StateCreator } from 'zustand';
 
 export interface IAuthSliceState {

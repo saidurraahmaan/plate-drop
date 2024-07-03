@@ -1,6 +1,7 @@
 import { APP_ROUTES } from '@/constants';
+import {TUnAuthorizedNavContent} from './types'
 
-export const getUnAuthorizedNavItems: unAuthorizedNavContent[] = [
+export const getUnAuthorizedNavItems: TUnAuthorizedNavContent[] = [
   {
     key: 1,
     label: 'Register',

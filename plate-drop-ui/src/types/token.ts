@@ -1,3 +1,3 @@
-interface IJWTToken {
+export interface IJWTToken {
     token: string | undefined ;
 }

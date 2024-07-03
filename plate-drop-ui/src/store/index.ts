@@ -1,13 +1,27 @@
 // src/store/index.ts
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 import { IAuthSliceState, createAuthSlice } from './authSlice';
+import { ICartSliceState, createCartSlice } from './cartSlice';
 
-type StoreState = IAuthSliceState;
+type StoreState = IAuthSliceState & ICartSliceState;
 
-const useStore = create<StoreState>()((...a) => ({
-  ...createAuthSlice(...a),
-}))
+const persistConfig = {
+  name: 'plate-drop-storage',
+  partialize: (state: StoreState) => ({
+    token: state.token,
+    userInfo: state.userInfo,
+  }),
+};
 
+const useStore = create<StoreState>()(
+  persist(
+    (...a) => ({
+      ...createAuthSlice(...a),
+      ...createCartSlice(...a),
+    }),
+    persistConfig
+  )
+);
 
 export default useStore;
-
