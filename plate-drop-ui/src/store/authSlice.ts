@@ -1,3 +1,5 @@
+import { IUser } from '@/types/User';
+import { IJWTToken } from '@/types/token';
 import { StateCreator } from 'zustand';
 
 export interface IAuthSliceState {
