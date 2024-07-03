@@ -8,6 +8,9 @@ import fetchInstance from '@/libs/fetchApi';
 import { APP_ROUTES, AUTH_API } from '@/constants';
 import useStore from '@/store';
 import { useRouter } from 'next/navigation';
+import { IJWTToken } from '@/types/token';
+import { TLoginFieldType } from './types';
+import { IUser } from '@/types/User';
 
 const Login: React.FC = () => {
 
@@ -16,24 +19,25 @@ const Login: React.FC = () => {
 
 
 
-  const onFinish: FormProps<LoginFieldType>['onFinish'] = async (values) => {
+  const onFinish: FormProps<TLoginFieldType>['onFinish'] = async (values) => {
     try {
-      const data = await fetchInstance.post<{user:IUser; token:IJWTToken}, LoginFieldType>(
+      const data = await fetchInstance.post<{user:IUser; token:IJWTToken}, TLoginFieldType>(
         AUTH_API.SIGNIN,
         values
       );
       if(data){
         login(data.user,data.token)
         message.success('Login Success');
+        router.push(APP_ROUTES.HOME)
+        return;
       }
-      router.push(APP_ROUTES.HOME)
     } catch (error) {
       const err = error as Error;
       message.error(err.message);
     }
   };
 
-  const onFinishFailed: FormProps<LoginFieldType>['onFinishFailed'] = (
+  const onFinishFailed: FormProps<TLoginFieldType>['onFinishFailed'] = (
     errorInfo
   ) => {
     console.log('Failed:', errorInfo);
@@ -52,7 +56,7 @@ const Login: React.FC = () => {
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
-          <Form.Item<LoginFieldType>
+          <Form.Item<TLoginFieldType>
             label="Email"
             name="email"
             rules={[{ required: true, message: 'Please input your email!' }]}
@@ -60,7 +64,7 @@ const Login: React.FC = () => {
             <PrimaryInput />
           </Form.Item>
 
-          <Form.Item<LoginFieldType>
+          <Form.Item<TLoginFieldType>
             label="Password"
             name="password"
             rules={[{ required: true, message: 'Please input your password!' }]}
@@ -68,7 +72,7 @@ const Login: React.FC = () => {
             <PasswordInput />
           </Form.Item>
 
-          <Form.Item<LoginFieldType>
+          <Form.Item<TLoginFieldType>
             name="remember"
             valuePropName="checked"
             wrapperCol={{ offset: 8, span: 16 }}
