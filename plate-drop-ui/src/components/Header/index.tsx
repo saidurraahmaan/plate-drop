@@ -12,7 +12,11 @@ import styles from './header.module.css';
 import useStore from '@/store';
 import { APP_ROUTES } from '@/constants';
 
-const AppHeader = () => {
+interface AppHeaderProps {
+  shouldHideLogo?: boolean;
+}
+
+const AppHeader: React.FC<AppHeaderProps> = ({ shouldHideLogo }) => {
   const router = useRouter();
   const navItems = getUnAuthorizedNavItems.map((ele) => ({
     key: ele.key,
@@ -61,7 +65,7 @@ const AppHeader = () => {
     <>
       <Header style={{ display: 'flex', alignItems: 'center' }}>
         <div className={styles.nav_container}>
-          <div className="d-flex">
+          <div className={`d-flex ${shouldHideLogo ? styles.hidden : ''}`}>
             <Image src={logoImg} width={100} height={60} alt="logo" priority />
           </div>
           <div className={styles.nav_right}>

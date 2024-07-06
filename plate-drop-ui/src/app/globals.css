@@ -362,3 +362,14 @@ a {
 .fw-bold {
   font-weight: 700;
 }
+
+.main-content {
+  padding: 2rem 3rem;
+}
+
+.main-container {
+  background: white;
+  min-height: 280px;
+  padding: 2rem;
+  border-radius: 10px;
+}

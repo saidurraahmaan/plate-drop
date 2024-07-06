@@ -2,34 +2,42 @@
 import React from 'react';
 import type { FormProps } from 'antd';
 import { Checkbox, Form, message } from 'antd';
-import styles from './login.module.css';
-import { PasswordInput, PrimaryButton, PrimaryInput } from '@/components';
-import fetchInstance from '@/libs/fetchApi';
-import { APP_ROUTES, AUTH_API } from '@/constants';
-import useStore from '@/store';
 import { useRouter } from 'next/navigation';
+import { PasswordInput, PrimaryButton, PrimaryInput } from '@/components';
+import { APP_ROUTES, AUTH_API } from '@/constants';
+import fetchInstance from '@/libs/fetchApi';
 import { IJWTToken } from '@/types/token';
+import { USERROLE } from '@/types/User';
 import { TLoginFieldType } from './types';
+import styles from './login.module.css';
 import { IUser } from '@/types/User';
+import useStore from '@/store';
 
 const Login: React.FC = () => {
-
   const router = useRouter();
-  const {login} = useStore();
+  const { login } = useStore();
 
-
+  const getRedirectRoute = (role: USERROLE) => {
+    switch (role) {
+      case USERROLE.DELIVERYPERSON:
+        return '';
+      case USERROLE.RESTAURANT:
+        return APP_ROUTES.RESTAURANT_MANAGEMENT;
+      default:
+        return APP_ROUTES.HOME;
+    }
+  };
 
   const onFinish: FormProps<TLoginFieldType>['onFinish'] = async (values) => {
-    
     try {
-      const data = await fetchInstance.post<{user:IUser; token:IJWTToken}, TLoginFieldType>(
-        AUTH_API.SIGNIN,
-        values
-      );
-      if(data){
-        login(data.user,data.token)
+      const data = await fetchInstance.post<
+        { user: IUser; token: IJWTToken },
+        TLoginFieldType
+      >(AUTH_API.SIGNIN, values);
+      if (data) {
+        login(data.user, data.token);
         message.success('Login Success');
-        router.push(APP_ROUTES.HOME)
+        router.push(getRedirectRoute(data.user.role));
         return;
       }
     } catch (error) {
