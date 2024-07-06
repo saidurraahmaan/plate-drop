@@ -2,10 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { Layout } from 'antd';
-import { Content, Footer } from 'antd/es/layout/layout';
-import { AppHeader } from '@/components';
 import './globals.css';
-import styles from './app.module.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,16 +23,10 @@ const RootLayout = ({
       </head>
       <body className={inter.className}>
         <AntdRegistry>
-          <Layout>
-            <AppHeader />
-            <div className="hidden">divider</div>
-            <Content style={{ padding: '0 48px' }}>
-              <div className={styles.main_container}>{children}</div>
-            </Content>
-            <Footer style={{ textAlign: 'center' }}>
-              ©{new Date().getFullYear()} Created by Saidur Rahman
-            </Footer>
-          </Layout>
+          <Layout>{children}</Layout>
+          {/* <Footer style={{ textAlign: 'center', width: '100%' }}>
+          ©{new Date().getFullYear()} Created by Saidur Rahman
+        </Footer> */}
         </AntdRegistry>
       </body>
     </html>
