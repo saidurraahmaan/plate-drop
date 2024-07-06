@@ -10,6 +10,7 @@ import { getUnAuthorizedNavItems } from '@/app/utils';
 import logoImg from '../../../public/plate-drop-logo.png';
 import styles from './header.module.css';
 import useStore from '@/store';
+import { APP_ROUTES } from '@/constants';
 
 const AppHeader = () => {
   const router = useRouter();
@@ -22,10 +23,10 @@ const AppHeader = () => {
 
   const handleLogout = () => {
     logout();
-    router.push('/login');
+    router.push(APP_ROUTES.LOGIN);
   };
 
-  const items: MenuProps['items'] = [
+  const userProfileItems: MenuProps['items'] = [
     {
       key: 'profile',
       label: 'Profile Settings',
@@ -38,6 +39,24 @@ const AppHeader = () => {
     },
   ];
 
+  const registrationItems: MenuProps['items'] = [
+    {
+      key: 'customer',
+      label: 'As Customer',
+      onClick: () => router.push(APP_ROUTES.CUSTOMER_REGISTRATION),
+    },
+    {
+      key: 'restaurant',
+      label: 'As Restaurant Owner',
+      onClick: () => router.push(APP_ROUTES.RESTAURANT_REGISTRATION),
+    },
+    {
+      key: 'delivery',
+      label: 'As Delivery Person',
+      onClick: () => router.push(APP_ROUTES.DELIVERY_REGISTRATION),
+    },
+  ];
+
   return (
     <>
       <Header style={{ display: 'flex', alignItems: 'center' }}>
@@ -45,20 +64,27 @@ const AppHeader = () => {
           <div className="d-flex">
             <Image src={logoImg} width={100} height={60} alt="logo" priority />
           </div>
-          <div>
-            {!isLoggedIn && (
-              <Menu
-                theme="dark"
-                mode="horizontal"
-                items={navItems}
-                disabledOverflow
-                style={{ flex: 'auto', minWidth: 0 }}
-              />
-            )}
-            {isLoggedIn && (
-              <Dropdown menu={{ items }} placement="bottomRight">
+          <div className={styles.nav_right}>
+            {isLoggedIn ? (
+              <Dropdown menu={{ items: userProfileItems }} placement="bottom">
                 <Avatar style={{ marginLeft: 16 }} icon={<UserOutlined />} />
               </Dropdown>
+            ) : (
+              <>
+                <Dropdown
+                  menu={{ items: registrationItems }}
+                  placement="bottom"
+                >
+                  <span className={styles.register_text}>Register</span>
+                </Dropdown>
+                <Menu
+                  theme="dark"
+                  mode="horizontal"
+                  items={navItems}
+                  disabledOverflow
+                  style={{ flex: 'auto', minWidth: 0 }}
+                />
+              </>
             )}
           </div>
         </div>

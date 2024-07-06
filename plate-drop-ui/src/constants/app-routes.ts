@@ -1,6 +1,8 @@
 const APP_ROUTES = {
   HOME: '/',
-  REGISTRATION: '/auth/register',
+  CUSTOMER_REGISTRATION: '/auth/customer/register',
+  DELIVERY_REGISTRATION: '/auth/delivery/register',
+  RESTAURANT_REGISTRATION: '/auth/restaurant/register',
   LOGIN: '/auth/login',
 };
 
