@@ -20,3 +20,7 @@
   margin-right: 16px; /* Add some space between the register text and the menu */
   cursor: pointer;
 }
+
+.hidden {
+  visibility: hidden;
+}
