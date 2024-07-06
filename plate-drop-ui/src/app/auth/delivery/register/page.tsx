@@ -7,16 +7,23 @@ import { PasswordInput, PrimaryButton, PrimaryInput } from '@/components';
 import fetchInstance from '@/libs/fetchApi';
 import { AUTH_API, APP_ROUTES } from '@/constants';
 import { useRouter } from 'next/navigation';
+import { RegisterFieldType, TDeliverRegister } from './types';
+import { USERROLE } from '@/types/User';
 
 const Register = () => {
   const router = useRouter();
 
   const onFinish: FormProps<RegisterFieldType>['onFinish'] = async (values) => {
+    const data: TDeliverRegister = {
+      name: values.name,
+      email: values.email,
+      phone: values.phone,
+      password: values.password,
+      role: USERROLE.DELIVERYPERSON,
+    };
+
     try {
-      await fetchInstance.post<void, RegisterFieldType>(
-        AUTH_API.SIGNUP,
-        values
-      );
+      await fetchInstance.post<void, RegisterFieldType>(AUTH_API.SIGNUP, data);
       message.success('Registration successful!');
       router.push(APP_ROUTES.LOGIN);
     } catch (error) {

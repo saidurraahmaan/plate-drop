@@ -11,6 +11,7 @@ const persistConfig = {
   partialize: (state: StoreState) => ({
     token: state.token,
     userInfo: state.userInfo,
+    isLoggedIn: state.isLoggedIn,
   }),
 };
 

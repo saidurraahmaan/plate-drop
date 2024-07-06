@@ -1,6 +1,22 @@
 .nav_container {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+.nav_right {
+  display: flex;
+  align-items: center;
+}
+
+.register_text {
+  color: #fff; /* Ensure the text is visible on a dark background */
+  margin-right: 16px; /* Add some space between the register text and the menu */
+  cursor: pointer;
 }
