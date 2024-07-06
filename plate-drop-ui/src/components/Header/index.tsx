@@ -3,10 +3,13 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { Header } from 'antd/es/layout/layout';
 import Image from 'next/image';
-import { Menu } from 'antd';
+import { Avatar, Dropdown, Menu } from 'antd';
+import type { MenuProps } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 import { getUnAuthorizedNavItems } from '@/app/utils';
 import logoImg from '../../../public/plate-drop-logo.png';
 import styles from './header.module.css';
+import useStore from '@/store';
 
 const AppHeader = () => {
   const router = useRouter();
@@ -15,6 +18,25 @@ const AppHeader = () => {
     label: ele.label,
     onClick: () => router.push(ele.navigateTo),
   }));
+  const { logout, isLoggedIn } = useStore();
+
+  const handleLogout = () => {
+    logout();
+    router.push('/login');
+  };
+
+  const items: MenuProps['items'] = [
+    {
+      key: 'profile',
+      label: 'Profile Settings',
+      onClick: () => router.push('/profile'),
+    },
+    {
+      key: 'logout',
+      label: 'Logout',
+      onClick: handleLogout,
+    },
+  ];
 
   return (
     <>
@@ -24,13 +46,20 @@ const AppHeader = () => {
             <Image src={logoImg} width={100} height={60} alt="logo" priority />
           </div>
           <div>
-            <Menu
-              theme="dark"
-              mode="horizontal"
-              items={navItems}
-              disabledOverflow
-              style={{ flex: 'auto', minWidth: 0 }}
-            />
+            {!isLoggedIn && (
+              <Menu
+                theme="dark"
+                mode="horizontal"
+                items={navItems}
+                disabledOverflow
+                style={{ flex: 'auto', minWidth: 0 }}
+              />
+            )}
+            {isLoggedIn && (
+              <Dropdown menu={{ items }} placement="bottomRight">
+                <Avatar style={{ marginLeft: 16 }} icon={<UserOutlined />} />
+              </Dropdown>
+            )}
           </div>
         </div>
       </Header>
