@@ -65,7 +65,7 @@ const RestaurantManageLayout = ({
           onClick={onClick}
           style={{ width: '100%' }}
           defaultSelectedKeys={['1']}
-          defaultOpenKeys={['sub4', 'sub2']}
+          defaultOpenKeys={['restaurant']}
           mode="inline"
           items={items}
         />
