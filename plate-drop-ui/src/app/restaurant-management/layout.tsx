@@ -31,12 +31,12 @@ const items: MenuItem[] = [
   },
   {
     key: 'restaurant',
-    label: 'Manage Restaurant ',
+    label: 'Manage Restaurant',
     icon: <SettingOutlined />,
     children: [
       {
         key: APP_ROUTES.ADD_RESTAURANT,
-        label: 'Add Resturant',
+        label: 'Add Restaurant',
       },
       {
         key: APP_ROUTES.VIEW_RESTAURANT,
@@ -70,10 +70,10 @@ const RestaurantManageLayout = ({
           items={items}
         />
       </div>
-      <div style={{ width: '100%' }}>
+      <div className={styles.contentContainer}>
         <AppHeader shouldHideLogo={true} />
-        <Content style={{ margin: '2rem' }}>
-          <div>{children}</div>
+        <Content className={styles.content}>
+          {children}
         </Content>
       </div>
     </div>
