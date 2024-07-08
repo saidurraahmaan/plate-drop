@@ -358,6 +358,9 @@ a {
 .justify-content-between {
   justify-content: space-between;
 }
+.justify-content-center {
+  justify-content: center;
+}
 
 .fw-bold {
   font-weight: 700;
@@ -372,4 +375,8 @@ a {
   min-height: 280px;
   padding: 2rem;
   border-radius: 10px;
+}
+
+.wd-100 {
+  width: 100%;
 }
