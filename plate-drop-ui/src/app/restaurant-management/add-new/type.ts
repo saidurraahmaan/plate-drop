@@ -1,9 +1,9 @@
 export interface IAddRestaurantFormProps {
-  onAddRestaurant: (values: IRestaurant) => void;
+  onAddRestaurant: (values: IRestaurantFieldType) => void;
   className?: string;
 }
 
-export interface IRestaurant {
+export interface IRestaurantFieldType {
   name: string;
   cuisine: string;
   description: string;
