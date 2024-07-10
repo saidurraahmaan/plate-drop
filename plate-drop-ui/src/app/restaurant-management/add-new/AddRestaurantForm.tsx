@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { Form } from 'antd';
-import { IAddRestaurantFormProps, IRestaurant } from './type';
+import { IAddRestaurantFormProps, IRestaurantFieldType } from './type';
 import { AppTextArea, PrimaryButton, PrimaryInput } from '@/components';
 
 const AddRestaurantForm: React.FC<IAddRestaurantFormProps> = ({
@@ -10,7 +10,7 @@ const AddRestaurantForm: React.FC<IAddRestaurantFormProps> = ({
 }) => {
   const [form] = Form.useForm();
 
-  const onFinish = (values: IRestaurant) => {
+  const onFinish = (values: IRestaurantFieldType) => {
     onAddRestaurant(values);
     form.resetFields();
   };
