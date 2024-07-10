@@ -2,10 +2,10 @@
 import React from 'react';
 import { message } from 'antd';
 import AddRestaurantForm from './AddRestaurantForm';
-import { IRestaurant } from './type';
+import { IRestaurantFieldType } from './type';
 
 const AddNewRestaurant: React.FC = () => {
-  const handleAddRestaurant = (values: IRestaurant) => {
+  const handleAddRestaurant = (values: IRestaurantFieldType) => {
     console.log('Received values of form: ', values);
     message.success('Restaurant added successfully!');
   };
