@@ -1,7 +1,6 @@
 import { IUser } from '@/types/User';
 import { IJWTToken } from '@/types/token';
 import { StateCreator } from 'zustand';
-import { ICartSliceState } from './cartSlice';
 
 export interface IAuthSliceState {
   isLoggedIn: boolean;
@@ -10,13 +9,15 @@ export interface IAuthSliceState {
   login: (userInfo: IUser, token: IJWTToken) => void;
   logout: () => void;
   clearAuth: () => void;
+  getToken: () => IJWTToken | null;
 }
 
-export const createAuthSlice: StateCreator<IAuthSliceState> = (set) => ({
+export const createAuthSlice: StateCreator<IAuthSliceState> = (set, get) => ({
   isLoggedIn: false,
   userInfo: null,
   token: null,
   login: (userInfo, token) => set({ userInfo, token, isLoggedIn: true }),
   logout: () => set({ userInfo: null, token: null, isLoggedIn: false }),
   clearAuth: () => set({ userInfo: null, token: null }),
+  getToken: () => get().token,
 });
