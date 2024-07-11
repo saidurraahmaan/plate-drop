@@ -9,6 +9,8 @@ import com.s4r.persistence.restaurant.RestaurantRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
 
@@ -29,6 +31,15 @@ public class RestaurantServiceImpl implements RestaurantService {
         owner.setId(user.getId());
         restaurantEntity.setOwner(owner);
         restaurantRepo.save(restaurantEntity);
+    }
+
+    @Override
+    public List<RestaurantDTO> getUserRestaurants() {
+        var currentUser = ServiceUtils.getAuthenticatedUser();
+        var result = restaurantRepo.findAllByOwnerId(currentUser.getId());
+        return result.stream()
+                .map(RestaurantDTO::ofEntity)
+                .toList();
     }
 
     @Override
