@@ -1,3 +1,5 @@
+import useStore from '@/store';
+import { IJWTToken } from '@/types/token';
 const API_BASE_URL = process.env.API_BASE_URL;
 
 type RequestMethod = 'GET' | 'POST' | 'DELETE';
@@ -13,8 +15,11 @@ const fetchApi = async <T>(
   endpoint: string,
   { method = 'GET', body, cache = 'default', revalidate }: FetchOptions = {}
 ): Promise<T | null> => {
+  const token = useStore.getState().getToken();
+
   const headers = new Headers({
     'Content-Type': 'application/json',
+    Authorization: token ? `Bearer ${token}` : '',
   });
 
   const options: RequestInit = {
@@ -30,8 +35,6 @@ const fetchApi = async <T>(
 
   const res = await fetch(`${API_BASE_URL}${endpoint}`, options);
   const contentType = res.headers.get('Content-Type') || '';
-
-  // Log the raw response for debugging
 
   if (!res.ok) {
     const data = await res.json();
