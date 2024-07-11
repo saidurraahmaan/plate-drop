@@ -5,7 +5,7 @@ const APP_ROUTES = {
   RESTAURANT_REGISTRATION: '/auth/restaurant/register',
   RESTAURANT_MANAGEMENT: '/restaurant-management',
   ADD_RESTAURANT: '/restaurant-management/add-new',
-  VIEW_RESTAURANT: '/restaurant-management/view/resturant',
+  VIEW_RESTAURANT: '/restaurant-management/view-restaurants',
   LOGIN: '/auth/login',
 };
 
