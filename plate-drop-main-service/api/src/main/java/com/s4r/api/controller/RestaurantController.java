@@ -6,6 +6,8 @@ import com.s4r.domain.restaurant.RestaurantDTO;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/restaurant")
 public class RestaurantController {
@@ -14,6 +16,12 @@ public class RestaurantController {
 
     public RestaurantController(RestaurantService restaurantService) {
         this.restaurantService = restaurantService;
+    }
+
+
+    @GetMapping("/all")
+    public List<RestaurantDTO> getRestaurants() {
+        return restaurantService.getUserRestaurants();
     }
 
     @PostMapping("/add")
