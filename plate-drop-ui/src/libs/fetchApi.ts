@@ -1,6 +1,7 @@
 import useStore from '@/store';
-import { IJWTToken } from '@/types/token';
+import { AppError } from '@/types/Error';
 const API_BASE_URL = process.env.API_BASE_URL;
+
 
 type RequestMethod = 'GET' | 'POST' | 'DELETE';
 
@@ -38,13 +39,14 @@ const fetchApi = async <T>(
 
   if (!res.ok) {
     const data = await res.json();
-    throw new Error(data.message);
+    throw new AppError(data.message,data.code);
   }
 
   const contentLength = res.headers.get('Content-Length');
   if (contentLength === '0' || !contentType.includes('application/json')) {
     return null;
   }
+
   return res.json();
 };
 
@@ -59,7 +61,7 @@ const fetchInstance = {
   post: async <T, U>(endpoint: string, body: U): Promise<T | null> => {
     return fetchApi<T>(endpoint, { method: 'POST', body });
   },
-  del: async <T, U>(endpoint: string, body: U): Promise<T | null> => {
+  delete: async <T, U>(endpoint: string, body: U): Promise<T | null> => {
     return fetchApi<T>(endpoint, { method: 'DELETE', body });
   },
 };

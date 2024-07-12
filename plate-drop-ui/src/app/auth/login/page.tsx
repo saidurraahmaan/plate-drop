@@ -6,12 +6,13 @@ import { useRouter } from 'next/navigation';
 import { PasswordInput, PrimaryButton, PrimaryInput } from '@/components';
 import { APP_ROUTES, AUTH_API } from '@/constants';
 import fetchInstance from '@/libs/fetchApi';
-import { IJWTToken } from '@/types/token';
+import { IJWTToken } from '@/types/Token';
 import { USERROLE } from '@/types/User';
 import { TLoginFieldType } from './types';
 import styles from './login.module.css';
 import { IUser } from '@/types/User';
 import useStore from '@/store';
+import { AppError } from '@/types/Error';
 
 const Login: React.FC = () => {
   const router = useRouter();
@@ -41,7 +42,7 @@ const Login: React.FC = () => {
         return;
       }
     } catch (error) {
-      const err = error as Error;
+      const err = error as AppError;
       message.error(err.message);
     }
   };
