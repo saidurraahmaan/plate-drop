@@ -1,6 +1,5 @@
 package com.s4r.api.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +11,9 @@ import org.springframework.security.config.annotation.web.configurers.CorsConfig
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 
@@ -33,10 +34,14 @@ public class SecurityConfig {
     private final Environment env;
     @Value("${security.cors-domains}")
     private List<String> corsDomains;
+    private final AccessDeniedHandler accessDeniedHandler;
+    private final AuthenticationEntryPoint authenticationEntryPoint;
 
-    public SecurityConfig(JwtService jwtService, Environment env) {
+    public SecurityConfig(JwtService jwtService, Environment env, AccessDeniedHandler accessDeniedHandler, AuthenticationEntryPoint authenticationEntryPoint) {
         this.jwtService = jwtService;
         this.env = env;
+        this.accessDeniedHandler = accessDeniedHandler;
+        this.authenticationEntryPoint = authenticationEntryPoint;
     }
 
     @Bean
@@ -48,6 +53,9 @@ public class SecurityConfig {
                         .anyRequest()
                         .authenticated())
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(exception -> exception
+                        .accessDeniedHandler(accessDeniedHandler)
+                        .authenticationEntryPoint(authenticationEntryPoint))
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
