@@ -3,7 +3,7 @@ import React from 'react';
 import { message } from 'antd';
 import AddRestaurantForm from './AddRestaurantForm';
 import { IRestaurantFieldType } from './type';
-import { addRestaurant } from './api';
+import { addRestaurant } from '../api';
 
 const AddNewRestaurant: React.FC = () => {
   const handleAddRestaurant = async (values: IRestaurantFieldType) => {

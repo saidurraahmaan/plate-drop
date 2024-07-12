@@ -9,3 +9,12 @@ export interface IRestaurantFieldType {
   description: string;
   imageUrl: string;
 }
+
+export interface IRestaurant {
+  id: number;
+  name: string;
+  cuisine: string;
+  description: string;
+  imageUrl: string;
+  rating: number;
+}
