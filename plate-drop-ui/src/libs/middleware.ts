@@ -1,18 +1,26 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+// import { NextResponse } from 'next/server';
+// import type { NextRequest } from 'next/server';
 
-export function middleware(request: NextRequest) {
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set('x-hello-from-middleware1', 'hello');
+// export function middleware(request: NextRequest) {
+//   let cookie = request.cookies.get('JWT-TOKEN');
+//   console.log(cookie);
+//   const allCookies = request.cookies.getAll();
+//   console.log(allCookies);
 
-  const response = NextResponse.next({
-    request: {
-      // New request headers
-      headers: requestHeaders,
-    },
-  });
+//   request.cookies.has('nextjs'); // => true
+//   request.cookies.delete('nextjs');
+//   request.cookies.has('nextjs'); // => false
 
-  // Set a new response header `x-hello-from-middleware2`
-  response.headers.set('x-hello-from-middleware2', 'hello');
-  return response;
-}
+//   // Setting cookies on the response using the `ResponseCookies` API
+//   const response = NextResponse.next();
+//   response.cookies.set('JWT-TOKEN', 'fast');
+//   response.cookies.set({
+//     name: 'vercel',
+//     value: 'fast',
+//     path: '/',
+//   });
+//   cookie = response.cookies.get('JWT-TOKEN');
+//   console.log('cookie'); // => { name: 'vercel', value: 'fast', Path: '/' }
+
+//   return response;
+// }
