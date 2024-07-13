@@ -1,7 +1,5 @@
-import useStore from '@/store';
 import { AppError } from '@/types/Error';
 const API_BASE_URL = process.env.API_BASE_URL;
-
 
 type RequestMethod = 'GET' | 'POST' | 'DELETE';
 
@@ -10,28 +8,34 @@ interface FetchOptions {
   body?: any;
   cache?: RequestCache;
   revalidate?: number;
+  headers?: HeadersInit; // Add headers to the FetchOptions
 }
 
 const fetchApi = async <T>(
   endpoint: string,
-  { method = 'GET', body, cache = 'default', revalidate }: FetchOptions = {}
+  {
+    method = 'GET',
+    body,
+    cache = 'default',
+    revalidate,
+    headers: customHeaders,
+  }: FetchOptions = {}
 ): Promise<T | null> => {
-  const token = useStore.getState().getToken();
-
   const headers = new Headers({
     'Content-Type': 'application/json',
-    Authorization: token ? `Bearer ${token}` : '',
+    ...customHeaders, // Merge custom headers
   });
 
-  const options: RequestInit = {
+  const options: RequestInit & { next?: { revalidate?: number } } = {
     method,
     headers,
     cache,
     body: body ? JSON.stringify(body) : undefined,
+    credentials: 'include',
   };
 
-  if (revalidate !== undefined) {
-    headers.append('x-vercel-revalidate', revalidate.toString());
+  if (!revalidate) {
+    options.next = { revalidate };
   }
 
   const res = await fetch(`${API_BASE_URL}${endpoint}`, options);
@@ -39,7 +43,7 @@ const fetchApi = async <T>(
 
   if (!res.ok) {
     const data = await res.json();
-    throw new AppError(data.message,data.code);
+    throw new AppError(data.message, data.code);
   }
 
   const contentLength = res.headers.get('Content-Length');
@@ -50,13 +54,14 @@ const fetchApi = async <T>(
   return res.json();
 };
 
-const fetchInstance = {
+const fetchClient = {
   get: async <T>(
     endpoint: string,
     cache?: RequestCache,
-    revalidate?: number
+    revalidate?: number,
+    headers?: HeadersInit // Add headers parameter to the get method
   ): Promise<T | null> => {
-    return fetchApi<T>(endpoint, { method: 'GET', cache, revalidate });
+    return fetchApi<T>(endpoint, { method: 'GET', cache, revalidate, headers });
   },
   post: async <T, U>(endpoint: string, body: U): Promise<T | null> => {
     return fetchApi<T>(endpoint, { method: 'POST', body });
@@ -66,4 +71,4 @@ const fetchInstance = {
   },
 };
 
-export default fetchInstance;
+export default fetchClient;

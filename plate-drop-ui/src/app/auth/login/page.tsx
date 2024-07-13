@@ -5,8 +5,7 @@ import { Checkbox, Form, message } from 'antd';
 import { useRouter } from 'next/navigation';
 import { PasswordInput, PrimaryButton, PrimaryInput } from '@/components';
 import { APP_ROUTES, AUTH_API } from '@/constants';
-import fetchInstance from '@/libs/fetchApi';
-import { IJWTToken } from '@/types/Token';
+import fetchInstance from '@/libs/fetchClient';
 import { USERROLE } from '@/types/User';
 import { TLoginFieldType } from './types';
 import styles from './login.module.css';
@@ -31,14 +30,14 @@ const Login: React.FC = () => {
 
   const onFinish: FormProps<TLoginFieldType>['onFinish'] = async (values) => {
     try {
-      const data = await fetchInstance.post<
-        { user: IUser; token: IJWTToken },
-        TLoginFieldType
-      >(AUTH_API.SIGNIN, values);
+      const data = await fetchInstance.post<IUser, TLoginFieldType>(
+        AUTH_API.SIGNIN,
+        values
+      );
       if (data) {
-        login(data.user, data.token);
+        login(data);
         message.success('Login Success');
-        router.push(getRedirectRoute(data.user.role));
+        router.push(getRedirectRoute(data.role));
         return;
       }
     } catch (error) {

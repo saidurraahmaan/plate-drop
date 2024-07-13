@@ -4,7 +4,7 @@ import { Form, message } from 'antd';
 import type { FormProps } from 'antd';
 import styles from './register.module.css';
 import { PasswordInput, PrimaryButton, PrimaryInput } from '@/components';
-import fetchInstance from '@/libs/fetchApi';
+import fetchInstance from '@/libs/fetchClient';
 import { AUTH_API, APP_ROUTES } from '@/constants';
 import { useRouter } from 'next/navigation';
 import { RegisterFieldType, TRestaurantRegister } from './types';
