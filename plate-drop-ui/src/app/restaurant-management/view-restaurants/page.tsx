@@ -1,25 +1,27 @@
-'use client';
-import React, { useEffect, useState } from 'react';
-import { fetchUserRestaurants } from '../api';
+import React from 'react';
+import { RESTAURANT_API } from '@/app/restaurant-management/api';
+import fetchClient from '@/libs/fetchClient';
+import { getCookiesHeader } from '@/utils/SsrHelper';
+import { IRestaurant } from '../add-new/type';
+import RestaurantList from './restaurant-list';
 
-const ViewRestaurants = () => {
-  const [restaurants, setRestaurants] = useState([]);
+const ViewRestaurants = async () => {
+  const restaurants = await fetchClient.get<IRestaurant[]>(
+    RESTAURANT_API.userRestaurants,
+    undefined,
+    2,
+    getCookiesHeader()
+  );
 
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        const data = await fetchUserRestaurants();
-        console.log(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetch();
-  }, []);
+  if (!restaurants) {
+    return <div>No restaurants found.</div>;
+  }
 
-  console.log(restaurants);
-
-  return <div>ViewRestaurants</div>;
+  return (
+    <div>
+      <RestaurantList restaurants={restaurants} />
+    </div>
+  );
 };
 
 export default ViewRestaurants;
