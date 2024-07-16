@@ -45,10 +45,3 @@ Follow these instructions to set up the project on your local machine.
 - [RabbitMQ](https://www.rabbitmq.com/download.html)
 - [Kafka](https://kafka.apache.org/quickstart)
 
-### Backend Setup
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/yourusername/food-delivery-app.git
-   cd food-delivery-app/backend
