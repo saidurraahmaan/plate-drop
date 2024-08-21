@@ -1,6 +1,5 @@
 package com.s4r.domain.menuitem;
 
-import com.s4r.domain.restaurant.Restaurant;
 import com.s4r.domain.restaurant.RestaurantDTO;
 
 public class MenuItemDTO {
